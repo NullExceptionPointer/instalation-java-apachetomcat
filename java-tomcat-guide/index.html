@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="”robots”" content="”index,follow”" />
+    <meta
+      name="”description”"
+      content="Tutorial para instalacion de java default 11 y apache tomcat 9"
+    />
+    <meta name="author" content="Lucas Isaac Soto" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenidos a mi tutorial</title>
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- para las fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- para los iconos -->
+    <script
+      src="https://kit.fontawesome.com/aa25030a9c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <!-- SEPARACION DE HEAD Y BODY -->
+
+  <body>
+    <header>
+      <img src="./img/udc-logo-header.png" alt="logo udc" id="inicio" />
+      <h1>Unidad 1 - actividad web container 2023</h1>
+    </header>
+
+    <main class="principal">
+      <aside class="indice-dinamico">
+        <ol class="indice">
+          <li><a href="#uno">Introduccion al Tutorial</a></li>
+          <li><a href="#dos">Limpieza e Instalacion de Java</a></li>
+          <li><a href="#tres">Desintalacion Oracle JDK</a></li>
+          <li><a href="#cuatro">Desintalacion openJDK</a></li>
+          <li><a href="#cinco">Limpiando JAVA_HOME</a></li>
+          <li><a href="#seis">Instalacion Default Java (version 11)</a></li>
+          <li><a href="#siete">Actualizar JAVA_HOME</a></li>
+          <li>
+            <a href="#ocho"
+              >Limpieza e Instalacion de Apache Tomcat (version 11)</a
+            >
+          </li>
+          <li><a href="#nueve">Instalacion de Apache Tomcat (version 9)</a></li>
+          <li><a href="#diez">Actualizacion de CATALINA_HOME</a></li>
+          <li><a href="#once">Configuracion de tomcat user</a></li>
+          <li><a href="#doce">Correr Apache Tomcat (sin JSTL)</a></li>
+          <li><a href="#trece">Subir un war (sin JSTL)</a></li>
+          <li>
+            <a href="#catorce">Instalando JSTL en nuestro apache y proyecto</a>
+          </li>
+        </ol>
+      </aside>
+
+      <div class="contenido">
+        <div id="uno" class="bienvenida">
+          <h1>1 Introduccion al Tutorial</h1>
+          <p>
+            Bienvenidos todos a este tutorial de instalacion y configuracion de
+            java y apache tomcat.
+          </p>
+          <p>
+            Vamos a realizar la instalacion del default jdk (version 11), la
+            instalacion de apache tomcat (version 9). Algunas actividades que
+            vamos a realizar en este tutorial son:
+          </p>
+          <ul class="listado">
+            <li>
+              <p>
+                Limpiar nuestro sistema de java y apache para una instalacion de
+                0.
+              </p>
+            </li>
+            <li><p>Limpiar las variables javahome y catalinahome.</p></li>
+            <li>
+              <p>Desintalar la version de java que tengamos instalada.</p>
+            </li>
+            <li>
+              <p>
+                Desintalar la version de apache tomcat que tengamos instalada.
+              </p>
+            </li>
+            <li><p>Instalar java y configurar la variable javahome.</p></li>
+            <li><p>Instalar apache tomcat y configurar catalina home.</p></li>
+            <li>
+              <p>
+                Configurar apache tomcat para poder ingresar al app manager.
+              </p>
+            </li>
+            <li>
+              <p>Desplegar un archivo .war de ejemplo en apache tomcat.</p>
+            </li>
+            <li>
+              <p>
+                Descargar e instalar la libreria JSTL enlas posibles carpetas de
+                apache tomcat.
+              </p>
+            </li>
+            <li>
+              <p>Reiniciar el container y testear que funcione la app.</p>
+            </li>
+          </ul>
+        </div>
+        <hr />
+
+        <div id="dos" class="pasos">
+          <h1>2 Limpieza e Instalacion de Java</h1>
+          <p>
+            Como ya dijimos antes vamos a realizar la instalacion de default JDK
+            (version 11), para ello vamos a necesitar verificar si ya tenemos
+            una instalacion previa de java para ello vamos a abrir una terminal
+            en nuestro linux mint 21.1 y a ejecutar los comandos.
+          </p>
+          <code>
+            $ java --version <br />
+            $ javac --version
+          </code>
+          <p>
+            El resultado de este comando en la terminal puede variar ya que
+            podemos, no tener instalado java, instalado default java u tener
+            instalado oracle java. En mi caso:
+          </p>
+          <img
+            src="./img/7-java-unistall.png"
+            alt="Comando java --version en la terminal"
+            title="Comando java --version en la terminal"
+          />
+          <p>
+            Podemos observar que tengo instalado el oracle java jdk.
+            Acontinuacion voy a mostrarte los comandos para poder desintalar el
+            jdk sea oracle java u openjdk.
+          </p>
+          <p>
+            Un tip util para saber si tenemos java instalado y cuantos tenemos
+            instalados es ejecutar los siguientes comando en la terminal:
+          </p>
+          <code>$ dpkg -l | grep openjdk </code>
+          <code>$ sudo update-alternatives --config java</code>
+          <p>
+            Este comando nos mostrara un menu donde podremos elegir entre los
+            diferentes javas que tengamos instalado, en caso de tener un solo
+            java instalado tambien te lo dira.
+          </p>
+          <img
+            src="./img/8-java-version-unistall.png"
+            alt="Comando version java en la terminal"
+            title="Comando version java en la terminal"
+          />
+          <p>
+            En mi caso se puede ver que no tengo instalado openjdk y solo tengo
+            1 version de java instalada.
+          </p>
+        </div>
+        <hr />
+        <div id="tres" class="pasos">
+          <h2>3 Desintalacion Oracle JDK</h2>
+          <p>
+            Para desintalar la version oracle java de nuestro linux usaremos los
+            siguientes comandos en la terminal de linux :
+          </p>
+          <p>
+            (Reemplazar la palabra version con tu version de java. Podes ir a la
+            carpeta donde se encuentra el java y usar ese nombre)
+          </p>
+          <code>
+            $ sudo update-alternatives --remove "java"
+            "/usr/lib/jvm/jdk[version]/bin/java"
+            <br />
+            $ sudo update-alternatives --remove "javac"
+            "/usr/lib/jvm/jdk[version]/bin/javac"
+            <br />
+            $ sudo update-alternatives --remove "javaws"
+            "/usr/lib/jvm/jdk[version]/bin/javaws"
+          </code>
+          <img
+            src="./img/9-oracle-java-unistalled.png"
+            alt="Comando eliminar oracle java"
+            title="Comando eliminar oracle java"
+          />
+          <p>
+            El siguiente paso es eliminar la carpeta JDK correspondiente con el
+            siguiente comando en la terminal de linux:
+          </p>
+          <code>$ sudo rm -r /usr/lib/jvm/jdk[version]</code>
+          <p>
+            Ahora podemos volver a verificar si tenemos java instalado es
+            recomendable cerrar y abrir una terminal nueva y ejecutar los
+            siguientes comandos en la terminal:
+          </p>
+          <code>
+            $ java --version <br />
+            $ javac --version
+          </code>
+          <img
+            src="./img/10-oracle-java-unistalled-succefull.png"
+            alt="Comando version java en la terminal"
+            title="Comando version java en la terminal"
+          />
+        </div>
+        <hr />
+        <div id="cuatro" class="pasos">
+          <h2>4 Desintalacion openJDK</h2>
+          <p>Para desintalar openJDK vamos a usar el siguiente comando:</p>
+          <code>$ sudo apt remove --purge openjdk*</code>
+          <p>
+            Al eliminar java vamos a quedarnos con algunas dependencias que no
+            utilizaremos. Es recomendable "auto-removerlas" a todas ellas usando
+            el manejador de paquetes de linux
+          </p>
+          <code>$ sudo apt autoremove openjdk*</code>
+          <p>
+            (No esta demas verificar que la carpeta del java correspondiente se
+            haya eliminado, caso contrario realizar el siguiente comando en la
+            terminal de tu linux)
+          </p>
+          <code>$ sudo rm -r /usr/lib/jvm/jdk[version]</code>
+          <p>
+            Como resultado final lo que debemos ver es que cuando ejecutemos el
+            comando java --version nos muestre el siguiente mensaje
+          </p>
+          <img
+            src="./img/10-oracle-java-unistalled-succefull.png"
+            alt="Comando version java en la terminal"
+            title="Comando version java en la terminal"
+          />
+        </div>
+        <hr />
+        <div id="cinco" class="pasos">
+          <h2>5 Limpiando JAVA_HOME</h2>
+          <p>
+            JAVA_HOME es una variable de ambiente, ella tiene el valor del path
+            a nuestra carpeta donde se encuentra java usualmente la llamada bin.
+          </p>
+          <p>
+            Esta variable es necesaria para aquellas aplicaciones que hagan uso
+            de nuestro java. Si esta es la primera vez que instalas java lo mas
+            probable es que no tengas que hacer este paso, podes omitirlo.
+          </p>
+          <br />
+          <p>
+            Ahora para poder ver si existe la variable JAVA_HOME podemos
+            ejecutar el siguiente comando
+          </p>
+          <code>$ echo $JAVA_HOME</code>
+          <p>el resultado de esto si existe en tu maquina es:</p>
+          <img
+            src="./img/2-echo-path-javahome-unistall.png"
+            alt="contenido de JAVA_HOME"
+            title="contenido de JAVA_HOME"
+          />
+          <p>
+            Ademas si existe tu JAVA_HOME lo mas probable es que tambien este
+            asociado a tu PATH
+          </p>
+          <code>$ echo $PATH</code>
+          <img
+            src="./img/1-echo-path-java-unistall.png"
+            alt="contenido de PATH"
+            title="contenido de PATH"
+          />
+          <p>
+            Si observas bien en el segundo renglons de la respuesta esta el path
+            /usr/lib/jvm/jdk-20. No esta de mas limpiar estas variables para
+            tener una instalacion mas limpia.
+          </p>
+
+          <br /><br />
+          <p>
+            Existen 3 archivos donde podes encontrar definidas esta variable
+          </p>
+          <ul class="listado">
+            <li>
+              <p>
+                <span>~/.bashrc :</span> Este archivo tiene comandos que corren
+                cuando iniciamos un nuevo bash shell
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>/etc/environment :</span> Archivo de configuracion que
+                asigna las environment vars a todos los usuarios y procesos.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>/root/.bashrc :</span> Modifica el archivo .bashrc del
+                usuario root.
+              </p>
+            </li>
+          </ul>
+
+          <br />
+          <p>
+            Ahora lo que vamos a hacer es abrir los archivos y buscar al final
+            de este donde se encuentre definido JAVA_HOME y lo borraremos, y del
+            PATH tambien. Para ellos vamos a ejecutar los siguiente comandos
+          </p>
+          <code>
+            $ sudo nano ~/.bashrc <br />
+            $ sudo nano /etc/environment <br />
+          </code>
+          <p>
+            Este ultimo es para el usuario root, tenemos que verificar en esos 3
+            archivos que son los mas comunes.
+          </p>
+          <code>
+            $ sudo su <br />
+            $ nano /root/.bashrc</code
+          >
+
+          <p>
+            Lo que vamos a estar buscando son lineas similares a la siguiente
+          </p>
+          <img
+            src="./img/4-echo-etc-environment-unistall.png"
+            alt="Archivo buscando JAVA_HOME"
+          />
+          <p>
+            Lo que vamos a hacer ahora es borrar JAVA_HOME y tambien quitarlo
+            del PATH.
+          </p>
+          <br />
+          <p>
+            Ahora finalmente para los 3 archivos que hicimos la modificacion
+            vamos a ejecutar el comando correspondiente:
+          </p>
+          <code>
+            $ source ~/-bashrc <br />
+            $ source /etc/environment <br />
+            $ source /root/.bashrc
+          </code>
+          <p>
+            Esto lo que hace es aplicar los cambios a la shell que estas usando,
+            si es necesario podes reiniciar la pc o cerrar y abrir otra shell.
+            Bien con esto podemos pasar a la instalacion de java
+          </p>
+        </div>
+        <hr />
+        <div id="seis" class="pasos">
+          <h2>6 Instalacion Default Java (version 11)</h2>
+          <p>
+            Vamos a empezar con la instalacion de nuestro java llegado a este
+            punto la instalacion es mucho mas sencilla, en una terminal vamos a
+            ejecutar los siguientes comandos:
+          </p>
+          <code>
+            $ sudo apt-get update <br />
+            $ sudo apt-get upgrade <br />
+            $ sudo apt install default-jdk openjdk-11-doc openjdk-11-source
+          </code>
+
+          <p>
+            Ahora te voy a explicar que hicimos en esas lineas, las primeras dos
+            son para actualizar e instalar tus repositorios.
+          </p>
+          <br />
+          <p>
+            Y la ultima linea es la que te instalara nuestro default java
+            version 11, podemos ver que instalamos 3 cosas.
+          </p>
+          <ul class="listado">
+            <li>
+              <p>
+                <span>default-jdk :</span> Este paquete es un metapaquete que
+                apunta a la versión predeterminada del kit de desarrollo de Java
+                que se recomienda para la distribución. En su caso, dado que
+                está en Linux Mint, esto apuntará a la versión predeterminada de
+                OpenJDK disponible para su versión de Mint.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>openjdk-11-doc :</span> Este paquete contiene la
+                documentación (documentación de la API de Java) para OpenJDK 11.
+                Puede ser muy útil para hacer referencia a clases, métodos y
+                otros detalles de Java cuando desarrolla aplicaciones.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>openjdk-11-source :</span> Este paquete contiene el código
+                fuente de OpenJDK 11. Tener el código fuente puede ser útil si
+                desea explorar los aspectos internos de la implementación de
+                OpenJDK o depurar cualquier problema que pueda surgir durante el
+                desarrollo.
+              </p>
+            </li>
+          </ul>
+          <p>
+            Con esto vamos a isntalar el JDK predeterminado con la documentacion
+            y el codigo fuente. Esto puede ser util, auque no es necesario si
+            recien estas comenzando en el desarrollo en java.
+          </p>
+        </div>
+        <hr />
+        <div id="siete" class="pasos">
+          <h2>7 Actualizar JAVA_HOME</h2>
+          <p>
+            Ya que anterior mente nosotros limpiamos JAVA_HOME ahora vamos a
+            hacer lo contrario, vamos a crearla y asignarle el valor
+            correspondiente para que las applicaciones como apache tomcat puedan
+            hacer uso de ella.
+          </p>
+          <br />
+          <p>
+            Como imaginas vamos a volver a hacer uso de los 3 archivos que
+            usamos antes para limpiar
+          </p>
+          <ul class="listado">
+            <li>
+              <p>
+                <span>~/.bashrc :</span> Este archivo tiene comandos que corren
+                cuando iniciamos un nuevo bash shell
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>/etc/environment :</span> Archivo de configuracion que
+                asigna las environment vars a todos los usuarios y procesos.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>/root/.bashrc :</span> Modifica el archivo .bashrc del
+                usuario root.
+              </p>
+            </li>
+          </ul>
+
+          <p>
+            Vamos a abrir estos archivos y al final de la linea agregar el
+            JAVA_HOME.
+          </p>
+          <code>
+            $ sudo nano ~/.bashrc <br />
+            $ sudo nano /etc/environment <br />
+          </code>
+          <code>
+            $ sudo su <br />
+            $ nano /root/.bashrc</code
+          >
+          <img src="./img/17-java-env-fix.png" alt="Nuevo JAVA_HOME" />
+          <p>
+            <b
+              >ATENCION CUANDO MODIFICAMOS EN ARCHIVO /etc/environment se
+              escribe como la imagen de arriba pero cuando estamos en los
+              archivos .bashrc se utiliza la siguiente sintaxis</b
+            >
+          </p>
+          <img src="./img/5-tomcat-root-bashrc-unistall.png" alt="EJEMPLO 2" />
+          <p>
+            <b
+              >Se utiliza la palabra export (En la imagen trata sobre apache en
+              nuestro caso usaremos JAVA_HOME)</b
+            >
+          </p>
+          <br /><br />
+          <p>
+            Por ultimo como cuando limpiamos JAVA_HOME aplicamos los cambios.
+          </p>
+          <code>
+            $ source ~/-bashrc <br />
+            $ source /etc/environment <br />
+            $ source /root/.bashrc
+          </code>
+        </div>
+        <hr />
+        <div id="ocho" class="pasos">
+          <h2 class="supertitulo">
+            8 Limpieza e Instalacion de Apache Tomcat (version 11)
+          </h2>
+          <p>
+            Este ultimo es un poco mas corto para realizar, usualmente apache
+            tomcat se encuentra en la ruta /opt/apache[version]
+          </p>
+          <br />
+          <p>
+            Aunque es probable que tambien lo tengas instalado en otro lado para
+            ello vamos a ubicarlo utilizando en la terminal de linux el
+            siguiente comando:
+          </p>
+          <code>$ locate tomcat</code>
+          <img
+            src="./img/16-buscando-tomcat.png"
+            alt="Buscando apache tomcat"
+          />
+          <p>
+            En mi caso se encuentra en la carpeta anterior mente comentada /opt/
+            y tengo la version de apache tomcat 8.5.88
+          </p>
+          <br />
+          <p>
+            Para desintalarlo basta con eliminar la carpeta con el siguiente
+            comando:
+          </p>
+          <code>$ sudo rm -rf /opt/apache-tomcat-8.5.88</code>
+          <br /><br />
+          <p>
+            Listo con esos pasos ya tenemos desintalado apache tomcat mas
+            adelante veremos que vamos a hacer con la variable de entorno
+            CATALINA_HOME.
+          </p>
+        </div>
+        <hr />
+        <div id="nueve" class="pasos">
+          <h2>9 Instalacion de Apache Tomcat (version 9)</h2>
+          <p>
+            Primero vamos a descargar apache tomcat desde el sitio web oficial
+            en:
+          </p>
+          <a href="https://tomcat.apache.org/" target="_blank">Apache Tomcat</a>
+          <br />
+          <p>Y vamos a seleccionar a la izquierda en Download tomcat 9</p>
+          <img src="./img/18-tomcat-page-download.png" alt="WEB tomcat" />
+          <br /><br />
+          <p>Ahora vamos a seleccionar en Core el archivo tar.gz</p>
+          <img src="./img/26-download.png" alt="Descargar version 9" />
+
+          <br /><br />
+          <p>
+            Ahora el archivo que se descargo lo vamos a mover al directorio
+            /opt/ y luego vamos a descomprimirlo ahi con los siguientes comandos
+          </p>
+          <code>
+            $ cd /opt/ <br />
+            $ sudo mv ~/Downloads/apache-tomcat-9.0.79.tar.gz ./ <br />
+            $ sudo tar -xzvf apache-tomcat-9.0.79.tar.gz <br />
+            $ sudo rm apache-tomcat-9.0.79.tar.gz
+          </code>
+          <p>
+            Con esto vamos a moverlos al directorio /opt/ luego movemos el
+            tomcat comprimido, lo descomprimimos y el ultimo paso es extra
+            borramos el archivo comprimido.
+          </p>
+          <br />
+          <p>Con esto tenemos instalado Apache Tomcat version 9</p>
+        </div>
+        <hr />
+        <div id="diez" class="pasos">
+          <h2>10 Actualizacion de CATALINA_HOME</h2>
+          <p>
+            Asi como actualizamos JAVA_HOME nosotros vamos a hacer lo mismo,
+            para ello vamos a poner esta variable al final del archivo en:
+          </p>
+          <code>$ sudo nano /etc/environment</code>
+          <p>
+            Y crearemos CATALINA_HOME="/opt/apache-tomcat-9.0.79" y al final del
+            path ponemos :/opt/apache-tomcat-9.0.79/bin.
+          </p>
+          <img src="./img/19-catalinahome-set.png" alt="CATALINA_HOME" />
+          <p>Tambien seria bueno agregarlo en</p>
+          <code>
+            $ sudo su <br />
+            $ nano /root/.bashrc</code
+          >
+        </div>
+        <hr />
+        <div id="once" class="pasos">
+          <h2>11 Configuracion de tomcat user</h2>
+          <p>
+            Este paso es para que podamos acceder al manager dentro de la
+            interfaz de nuestro tomcat. Para ello vamos a tener que abrir un
+            archivo para ello vamos a ejecutar en la terminal los siguietes
+            comandos.
+          </p>
+          <code>
+            $ sudo su <br />
+            $ cd /opt/apache-tomcat-9.0.79/conf <br />
+            $ nano tomcat-users.xml</code
+          >
+          <p>
+            ahora antes de la ultima linea vamos a agregar este usuario
+            &lt;/tomcat-users&gt;
+          </p>
+          <p>
+            <b>
+              &lt; user username="admin" password="admin"
+              roles="manager-gui,manager-script,manager-jmx,manager-status"/&gt;</b
+            >
+          </p>
+          <br /><br />
+          <p>
+            Lo que hicimos fue crear un usuario admin y password admin y con una
+            serie de roles que nos permitiran hacer ciertas acciones cuando
+            usemos por ejemplo netbeans
+          </p>
+          <ul class="listado">
+            <li>
+              <p>
+                <span>manager-gui :</span> Permite el acceso a la GUI HTML y a
+                las páginas de estado.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>manager-script :</span> Permite el acceso a la API HTTP y
+                a las páginas de estado.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>manager-jmx :</span> Permite el acceso al proxy JMX y a
+                las páginas de estado.
+              </p>
+            </li>
+            <li>
+              <p>
+                <span>manager-status :</span> Permite el acceso a las páginas de
+                estado solamente.
+              </p>
+            </li>
+          </ul>
+          <br /><br />
+          <p>Con esto ya tenemos nuestro Apache Tomcat casi listo.</p>
+        </div>
+        <hr />
+        <div id="doce" class="pasos">
+          <h2>12 Correr Apache Tomcat (sin JSTL)</h2>
+          <p>
+            Vamos a correr apache tomcat para ellos vamos a realizar los
+            siguientes comandos:
+          </p>
+          <code>
+            $ sudo su <br />
+            $ cd /opt/apache-tomcat-9.0.79/bin <br />
+            $ ./startup.sh</code
+          >
+          <p>Si te llega a dar un error similar al siguiente:</p>
+          <code
+            >$ Cannot find /Users/user/tomcat/bin/setclasspath.sh This file is
+            needed to run this program.
+          </code>
+          <p>
+            Puede ser que tu CATALINA_HOME este mal seteado, verificar la
+            version con tu apache tomcast instalado tienen que coincidir,
+            fijarse si se arregla desde usuario root haciendo source
+            /etc/environment. Lo mismo si te falla el JAVA_HOME
+          </p>
+          <br />
+          <p>Si fue exitoso podremos abrir tomcat en la url:</p>
+          <a href="localhost:8080" target="_blank">Pagina inicio tomcat</a>
+          <br /><br />
+          <p>Deberias ver lo siguiente:</p>
+          <img src="./img/21-tomcat-funcionando.png" alt="Tomcat inicio" />
+
+          <p>
+            Para poder subir una aplicacion, tenemos que ir a la derecha a la
+            seccion manager app. Cuando le agamos click nos va a pedir username
+            y password, las que pusimos en el pasos anterior. Ahora veremos una
+            nueva interfaz:
+          </p>
+          <img src="./img/24-manager-webapp.png" alt="Tomcat manager" />
+        </div>
+        <hr />
+        <div id="trece" class="pasos">
+          <h2>13 Subir un war (sin JSTL)</h2>
+          <p>
+            Vamos a subir el war que nos dejo la catedra para eso podremos
+            descargarlo desde aqui:
+          </p>
+          <a href="./assets/ejemplojsp.war" download>.war WEB II</a>
+          <br /><br />
+          <p>
+            Y este .war lo vamos a subir a nuestro tomcat desde la interfaz de
+            manager app en :
+          </p>
+          <img src="./img/23-subiendo-war.png" alt="Subientdo .war a tomcat" />
+          <p>
+            Te va a pedir que elijas el archivo war que vas a subir y le tenemos
+            dar a deploy. Con ello ya esta listo par apoder abrirlo ya que te
+            mostrar como una entrar nueva de applicaciones del manager app.
+          </p>
+          <img src="./img/25-app.png" alt="App corriendo en tomcat" />
+        </div>
+        <hr />
+        <div id="catorce" class="pasos">
+          <h2>14 Instalando JSTL en nuestro apache y proyecto</h2>
+          <p>
+            Lo primero que tenemos que hacer es descargar la libreria JSTL, la
+            dejo aqui por si la necesitas a mano :
+          </p>
+          <a href="./assets/jstl-1.2.jar" download>JSTL</a>
+          <p>
+            Una vez descargado vamos a este archivo ponerlo en WEB-INF de la
+            applicacion ejemplosjsp y tambien apache en lib, asi que vamos a
+            necesitar una copia de este.
+          </p>
+          <code>
+            $ sudo su <br />
+            $ sudo mv ~/Downloads/jstl-1.2.jar
+            /opt/apache-tomcat-9.0.79/webapps/ejemplojsp/WEB-INF <br />
+            $ sudo mv ~/Downloads/jstl-1.2.jar /opt/apache-tomcat-9.0.79/lib
+          </code>
+          <p>
+            Bien con ello ya tenemos todo listo, lo unico que queda hacer es
+            reiniciar nuestro apache con los siguientes comandos:
+          </p>
+          <code>
+            $ sudo su <br />
+            $ cd /opt/apache-tomcat-9.0.79/bin <br />
+            $ ./shutdown.sh <br />
+            $ ./startup.sh
+          </code>
+          <p>Con ello ya podemos volver a ir a ver como quedo la app.</p>
+        </div>
+        <hr />
+        <div class="vacio">
+          <h1 class="supertitulo">
+            GRACIAS POR SEGUIR ESTE TUTORIAL HASTA EL FINAL, TE DESEO EXITOS CON
+            LO QUE VIENE
+          </h1>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="redes">
+        <p>Podes encontrarme en</p>
+        <div class="medias">
+          <a href=""><i class="fa-brands fa-square-github fa-8x"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin fa-8x"></i></a>
+          <a href=""><i class="fa-brands fa-square-facebook fa-8x"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-information">
+        <div class="docente">
+          <h2>Docente</h2>
+          <p>Lic. Julio César Casco</p>
+          <p>
+            <i class="fa-regular fa-envelope">
+              <a href="mailto:jccasco@udc.edu.ar">jccasco@udc.edu.ar</a>
+            </i>
+            <br />
+            <i class="fa-solid fa-phone">
+              <a href="tel:+542804000000">+54 2804000000</a>
+            </i>
+          </p>
+        </div>
+
+        <div class="materia">
+          <h2>Materia</h2>
+          <p>Programación Web II</p>
+        </div>
+
+        <div class="alumno">
+          <h2>Alumno</h2>
+          <p>Lucas Isaac Soto</p>
+          <p>
+            <i class="fa-regular fa-envelope">
+              <a href="mailto:lisoto@udc.edu.ar">lisoto@udc.edu.ar</a>
+            </i>
+            <br />
+            <i class="fa-solid fa-phone">
+              <a href="tel:+542804000000">+54 2804000000</a>
+            </i>
+          </p>
+        </div>
+
+        <div class="universidad">
+          <h2>Universidad</h2>
+          <p><a href="https://udc.edu.ar/">Universidad del Chubut</a></p>
+          <p>
+            <i class="fa-regular fa-envelope">
+              <a href="mailto:academica@udc.edu.ar">academica@udc.edu.ar</a>
+            </i>
+            <br />
+            <i class="fa-regular fa-envelope">
+              <a href="mailto:alumnos@udc.edu.ar">alumnos@udc.edu.ar</a>
+            </i>
+            <br />
+            <i class="fa-solid fa-phone">
+              <a href="tel:+5428044481129">+54 (280) 448 1129</a>
+            </i>
+          </p>
+        </div>
+      </div>
+      <div class="derechos">
+        <p>Argentina, Chubut, Rawson |</p>
+        <p>Copyright 2023 - 2023 | it is free world</p>
+      </div>
+    </footer>
+    <script></script>
+  </body>
+</html>

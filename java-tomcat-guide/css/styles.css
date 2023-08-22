@@ -1,0 +1,249 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+}
+
+:root {
+  --color-one: #264653;
+  --color-two: #2a9d8f;
+  --color-three: #e9c46a;
+  --color-four: #f4a261;
+  --color-five: #e76f51;
+  --color-code: rgb(12, 20, 34);
+  --color-font-code: #d1edff;
+  --font: 2.2rem;
+  --subtitle: 2rem;
+  --head-title: 3.5rem;
+  --title: 3rem;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+p,
+a {
+  font-size: var(--font);
+}
+a {
+  color: whitesmoke;
+}
+code {
+  display: block;
+  margin: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  font-family: monospace;
+  font-size: var(--font);
+  color: var(--color-font-code);
+  font-weight: 300;
+  background-color: var(--color-code);
+  overflow: auto;
+}
+img {
+  margin: 1rem;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-one);
+}
+
+/********************************************************** PARA EL HEADER */
+header {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  background-color: var(--color-two);
+  width: 100vw;
+  height: 100px;
+
+  padding-left: 15px;
+}
+
+header h1 {
+  flex-grow: 1;
+  text-align: center;
+  font-size: var(--head-title);
+  color: var(--color-one);
+  font-weight: bold;
+}
+
+/**********************************************************************/
+/********************************************************** PARA EL FOOOTER */
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-two);
+  width: 100vw;
+  height: 500px;
+}
+.redes {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: auto;
+  border-bottom: 1px solid var(--color-one);
+}
+.redes p {
+  font-size: var(--subtitle);
+}
+.medias {
+  margin-top: 20px;
+}
+.medias a {
+  padding: 15px;
+}
+.fa-brands:hover {
+  opacity: 0.7;
+}
+.fa-square-github,
+.fa-linkedin,
+.fa-square-facebook {
+  color: var(--color-one);
+}
+
+.footer-information {
+  display: flex;
+  justify-content: space-evenly;
+
+  margin-top: 20px;
+  border-bottom: 1px solid var(--color-one);
+}
+.footer-information h2 {
+  font-size: var(--font);
+  color: var(--color-one);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+.footer-information p {
+  color: var(--color-one);
+}
+.footer-information a {
+  text-decoration: none;
+}
+.universidad {
+  margin-bottom: 15px;
+}
+.derechos {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+/* **********************************************************************************/
+
+/**********************************************************CONTENIDO PRINCIPAL RESUMEN*/
+.principal {
+  display: flex;
+  width: 100vw;
+  height: auto;
+}
+/************************************************************************************/
+
+/**********************************************************Indice dinamico */
+.indice-dinamico {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+  position: sticky;
+  top: 40px;
+  width: 25%;
+  height: 900px;
+  background-color: var(--color-five);
+
+  padding: 3%;
+  margin-top: 40px;
+  margin-bottom: 150px;
+}
+/***************************************************************************/
+
+/**********************************************************CONTENIDO PRINCIPAL RESUMEN*/
+.contenido {
+  width: 75%;
+  height: auto;
+  border: 2px solid black;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+.bienvenida {
+  margin-right: 20px;
+}
+.bienvenida h1 {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-size: var(--title);
+  text-align: center;
+  color: var(--color-four);
+}
+.bienvenida p {
+  color: var(--color-three);
+}
+
+.listado {
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+.indice {
+  font-size: var(--font);
+  word-wrap: break-word;
+}
+.indice a {
+  text-decoration: none;
+  color: black;
+}
+.indice a:hover {
+  text-decoration: none;
+  color: rgb(26, 26, 192);
+  background-color: var(--color-two);
+}
+
+.listado li {
+  font-size: var(--font);
+  margin-bottom: 5px;
+}
+.pasos .supertitulo {
+  text-align: center;
+  text-decoration: none;
+}
+li p span {
+  color: white;
+  font-weight: bold;
+}
+.pasos {
+  margin-right: 20px;
+}
+.pasos h1 {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  font-size: var(--title);
+  text-align: center;
+  color: var(--color-four);
+}
+.pasos p {
+  color: var(--color-three);
+}
+.pasos + hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.pasos h2 {
+  font-size: var(--title);
+  color: var(--color-four);
+  text-decoration: underline;
+}
+.vacio {
+  height: 200px;
+}
+/************************************************************************************/
